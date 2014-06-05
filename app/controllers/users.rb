@@ -12,6 +12,15 @@ get "/user/login" do
   erb :login
 end
 
+post "/user/login" do
+  if user_login_password_match?(params)
+    session[:id] = User.find_by(username: params[:username]).id
+    redirect "/user/dashboard/#{session[:id]}"
+  else
+    redirect '/user/login'
+  end
+end
+
 get "/user/create" do
   erb :create_account
 end
