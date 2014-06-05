@@ -1,4 +1,10 @@
 get '/' do
+  if !logged_in?
+    erb :index
+  else
+    redirect "/user/dashboard/#{session[:id]}"
+  end
   # Look in app/views/index.erb
-  erb :index
 end
+
+
