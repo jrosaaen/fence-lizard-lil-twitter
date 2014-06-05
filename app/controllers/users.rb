@@ -1,5 +1,6 @@
 get "/user/dashboard/:id" do
   @user = User.find(params[:id])
+  @tweets = @user.tweets
   erb :dashboard
 end
 
