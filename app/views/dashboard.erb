@@ -3,7 +3,7 @@
   <p>This is YOUR profile</p>
 
   <h2>Username:</h2>
-  <p><%= @user.username %></p>
+  <p><%= @user.username.capitalize %></p>
 
   <h2>Email: </h2>
   <p><%= @user.email %></p>
@@ -27,7 +27,12 @@
 <div class="container">
   <h2>These are the current tweets for <%= @user.username %></h2>
   <% @user.tweets.each do |tweet| %>
-    <p><%= tweet.created_at %></p>
+      <form action=<%= "/tweet/#{tweet.id}" %> method='post'>
+        <input type="hidden" name="_method" value="delete" >
+        <input style="float:right;" type="submit" value="Delete Tweet">
+      </form>
+    <p><%= tweet.created_at %>
+    </p>
     <p><%= tweet.content %></p>
     <% end %>
 </div>
